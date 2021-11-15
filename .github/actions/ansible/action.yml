@@ -1,0 +1,21 @@
+name: 'Ansible'
+description: 'Runs an Ansible playbook'
+inputs:
+  containerPath: 
+    description: 'Path to the ansible playbook and inventory files'
+    required: true
+  playbook:
+    description: 'Ansible playbook that is run'
+    required: true
+    default: playbook.yml
+  inventory:
+    description: 'Ansible inventory to use'
+    required: true
+    default: localhost
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - containerPath=${{ inputs.containerPath }}
+    - playbook=${{ inputs.playbook }}
+    - inventory=${{ inputs.inventory }}
